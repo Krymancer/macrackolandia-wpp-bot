@@ -1,3 +1,5 @@
+import type WAWebJS from "whatsapp-web.js";
+
 export default {
   name: 'ping',
   description: 'Reply ping!',
@@ -6,4 +8,5 @@ export default {
 };
 
 function command(message: WAWebJS.Message) {
+  message.reply("pong");
 }

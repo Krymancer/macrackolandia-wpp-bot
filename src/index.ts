@@ -1,5 +1,8 @@
 import qrcode from 'qrcode-terminal';
 import {Client, LocalAuth} from 'whatsapp-web.js';
+import type WAWebJS from 'whatsapp-web.js';
+
+import commands from './commands'; './commands';
 
 const client = new Client({
   authStrategy: new LocalAuth(),
@@ -14,11 +17,8 @@ client.on('ready', () => {
   console.log('Client is ready!');
 });
 
-client.on('message', message => {
-  if(message.body == "!ping") {
-    message.reply("pong");
-  }
-
+client.on('message', (message : WAWebJS.Message) => {
+  commands(message);
 });
 
 client.initialize();

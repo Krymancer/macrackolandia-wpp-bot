@@ -1,9 +1,10 @@
-import WAWebJS from "whatsapp-web.js";
+import type WAWebJS from "whatsapp-web.js";
 import ping from './ping';
+import sticker from "./sticker";
 
 const prefix = "!";
 
-const commands = [ping];
+const commands = [ping, sticker];
 
 export default function (message: WAWebJS.Message) {
   if(!message.body.startsWith(prefix)) return;
@@ -13,7 +14,7 @@ export default function (message: WAWebJS.Message) {
 
   if(!command) return;
 
-  commands.find(cmd => cmd.name == command || cmd.aliases.includes(command))?.run(message);
+  console.log(command);
 
-  console.log('Hello World!');
+  commands.find(cmd => cmd.name == command || cmd.aliases.includes(command))?.run(message);
 };
