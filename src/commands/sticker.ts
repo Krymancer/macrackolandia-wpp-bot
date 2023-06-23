@@ -15,6 +15,13 @@ async function command(message: WAWebJS.Message) {
 
   const media = await message.downloadMedia();
 
+  const allowedTypes = ["image/jpeg", "image/png", "video/mp4", "image/webp", "image/gif"];
+
+  if(!allowedTypes.includes(media.mimetype)) {
+    message.reply("Foi mal, só aceito imagens, videos e gifs" + "\n" + "Mime type: " + media.mimetype);
+    return;
+  }
+
   message.reply(media, undefined, {sendMediaAsSticker: true})
 
 }
